@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caleb Crouch | AI & ML Engineering Portfolio</title>
+<style>
+:root {
+  --bg-main: #0d0d0f;
+  --bg-card: #1c1c1f;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a5;
+  --accent: #4a90e2;
+  --border: #333338;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--bg-card);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-links a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.contact-links a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-tech {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.btn {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CALEB CROUCH</h1>
+  <div class="subtitle">AI/ML Developer & Systems Engineer</div>
+  <div class="contact-links">
+    <a href="mailto:ddracoosee@gmail.com">ddracoosee@gmail.com</a> |
+    <a href="https://github.com/YOUR_GITHUB" target="_blank">GitHub</a> |
+    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Analytical and driven AI developer with a multidisciplinary approach to problem-solving, bridging cognitive reasoning with computational systems. I specialize in architecting full-stack applications, designing agentic AI workflows, and integrating foundational LLMs into highly specialized tools.</p>
+    <p>With a foundation in cybersecurity, complex systems logic, and generative learning, I focus on building robust, accurate, and scalable technological solutions.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Technical Projects</h2>
+    <div class="projects-grid">
+      
+      <div class="card">
+        <h3>SOC Analysis Tool</h3>
+        <span class="card-tech">Python | Cybersecurity | System Architecture</span>
+        <p>A functional Security Operations Center analysis tool engineered to monitor, detect, and analyze security vulnerabilities using active risk management principles.</p>
+        <a href="https://github.com/YOUR_GITHUB/SOC-TOOL-REPO" target="_blank" class="btn">View Repository</a>
+      </div>
+
+      <div class="card">
+        <h3>Wholesale Market Analysis</h3>
+        <span class="card-tech">Gemini LLM | Full-Stack | API Integration</span>
+        <p>A full-stack application designed to analyze wholesale market trends and data, utilizing LLM capabilities to synthesize actionable insights for users.</p>
+        <a href="LINK_TO_GEMINI_STUDIO_APP_1" target="_blank" class="btn">Launch Application</a>
+      </div>
+
+      <div class="card">
+        <h3>Video Pattern Decoder</h3>
+        <span class="card-tech">LLM Integration | Data Analytics | Web Architecture</span>
+        <p>An analytical tool that processes and decodes the success metrics and structural patterns of high-performing digital creators.</p>
+        <a href="LINK_TO_GEMINI_STUDIO_APP_2" target="_blank" class="btn">Launch Application</a>
+      </div>
+
+      <div class="card">
+        <h3>Localized Agentic Assistant</h3>
+        <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
+        <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
+        <a href="#about" class="btn">System Overview</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 Caleb Crouch. Built with HTML & CSS.</p>
+</footer>
+
+</body>
+</html>
