@@ -91,6 +91,8 @@ p {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.2s ease;
 }
 
@@ -107,6 +109,7 @@ p {
 .card p {
   font-size: 0.95rem;
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
 .card-tech {
@@ -125,11 +128,20 @@ p {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   font-size: 0.9rem;
+  text-align: center;
   transition: background-color 0.2s ease;
+  margin-top: auto;
 }
 
 .btn:hover {
   background-color: var(--accent);
+}
+
+.btn-disabled {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  cursor: default;
+  pointer-events: none;
 }
 
 footer {
@@ -148,16 +160,16 @@ footer {
   <div class="subtitle">AI/ML Developer & Systems Engineer</div>
   <div class="contact-links">
     <a href="mailto:ddracoosee@gmail.com">ddracoosee@gmail.com</a> |
-    <a href="https://github.com/YOUR_GITHUB" target="_blank">GitHub</a> |
-    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+    <a href="https://github.com/ddracoosee-hue" target="_blank">GitHub</a> |
+    <a href="https://www.linkedin.com/in/caleb-crouch-289731337" target="_blank">LinkedIn</a>
   </div>
 </header>
 
 <main>
   <section id="about">
     <h2>About Me</h2>
-    <p>Analytical and driven AI developer with a multidisciplinary approach to problem-solving, bridging cognitive reasoning with computational systems. I specialize in architecting full-stack applications, designing agentic AI workflows, and integrating foundational LLMs into highly specialized tools.</p>
-    <p>With a foundation in cybersecurity, complex systems logic, and generative learning, I focus on building robust, accurate, and scalable technological solutions.</p>
+    <p>I am a Denver-based AI/ML Developer and systems architect with a fundamentally multidisciplinary approach to technology. Drawing from my academic focus on Quantum Physics and cognitive reasoning, I view software architecture not as isolated lines of code, but as interconnected pieces of a much larger, cohesive system. I actively bridge the gap between theoretical sciences, mathematics, and complex systems logic to engineer robust, real-world AI solutions.</p>
+    <p>Whether I am deploying customized local models on self-assembled hardware, architecting full-stack web applications, or integrating foundational LLMs across distinct platforms, I operate with an intense demand for truth, accuracy, and absolute integrity. Forged in high-pressure operational environments where patience under duress is critical, I am driven by a deep curiosity to understand the mechanical truth of a system, leveraging generative learning to build tools that challenge ideas, decode patterns, and execute with precision.</p>
   </section>
 
   <section id="projects">
@@ -168,28 +180,28 @@ footer {
         <h3>SOC Analysis Tool</h3>
         <span class="card-tech">Python | Cybersecurity | System Architecture</span>
         <p>A functional Security Operations Center analysis tool engineered to monitor, detect, and analyze security vulnerabilities using active risk management principles.</p>
-        <a href="https://github.com/YOUR_GITHUB/SOC-TOOL-REPO" target="_blank" class="btn">View Repository</a>
+        <a href="https://github.com/ddracoosee-hue/SOC-Analyst-Tool" target="_blank" class="btn">View Repository</a>
       </div>
 
       <div class="card">
         <h3>Wholesale Market Analysis</h3>
         <span class="card-tech">Gemini LLM | Full-Stack | API Integration</span>
         <p>A full-stack application designed to analyze wholesale market trends and data, utilizing LLM capabilities to synthesize actionable insights for users.</p>
-        <a href="LINK_TO_GEMINI_STUDIO_APP_1" target="_blank" class="btn">Launch Application</a>
+        <a href="https://semantic-mutation-engine-988718491455.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
       </div>
 
       <div class="card">
-        <h3>Video Pattern Decoder</h3>
-        <span class="card-tech">LLM Integration | Data Analytics | Web Architecture</span>
-        <p>An analytical tool that processes and decodes the success metrics and structural patterns of high-performing digital creators.</p>
-        <a href="LINK_TO_GEMINI_STUDIO_APP_2" target="_blank" class="btn">Launch Application</a>
+        <h3>Isabella's Closet</h3>
+        <span class="card-tech">Firebase | API Integration | Multi-LLM</span>
+        <p>Originally engineered as a highly personalized gift, this full-stack application integrates multiple large language models and complex APIs. Utilizing Firebase data and the latest Gemini models, it executes advanced pattern recognition to deliver highly tailored user styling recommendations.</p>
+        <a href="https://isabellas-closet-119703586198.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
       </div>
 
       <div class="card">
         <h3>Localized Agentic Assistant</h3>
         <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
         <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
-        <a href="#about" class="btn">System Overview</a>
+        <a href="#" class="btn btn-disabled">Work in progress..</a>
       </div>
 
     </div>
