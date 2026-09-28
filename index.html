@@ -8,6 +8,7 @@
 :root {
   --bg-main: #0d0d0f;
   --bg-card: #1c1c1f;
+  --bg-code: #121214;
   --text-primary: #f0f0f0;
   --text-secondary: #a0a0a5;
   --accent: #4a90e2;
@@ -18,6 +19,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
 }
 
 body {
@@ -80,9 +85,14 @@ p {
   margin-bottom: 1rem;
 }
 
+.section-intro {
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -106,9 +116,13 @@ p {
   color: var(--text-primary);
 }
 
+.card h3 .asterisk {
+  color: var(--accent);
+}
+
 .card p {
   font-size: 0.95rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-grow: 1;
 }
 
@@ -119,6 +133,25 @@ p {
   display: block;
 }
 
+.local-note {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.local-note:hover {
+  color: var(--accent);
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
 .btn {
   display: inline-block;
   background-color: transparent;
@@ -127,10 +160,11 @@ p {
   border: 1px solid var(--accent);
   padding: 0.5rem 1rem;
   border-radius: 4px;
+  font: inherit;
   font-size: 0.9rem;
   text-align: center;
+  cursor: pointer;
   transition: background-color 0.2s ease;
-  margin-top: auto;
 }
 
 .btn:hover {
@@ -144,12 +178,131 @@ p {
   pointer-events: none;
 }
 
+/* Project detail pop-ups */
+dialog {
+  margin: auto;
+  width: min(680px, calc(100% - 2rem));
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+dialog h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  padding-right: 2.5rem;
+}
+
+dialog h4 {
+  color: var(--text-primary);
+  margin: 1.25rem 0 0.5rem;
+}
+
+dialog ul {
+  color: var(--text-secondary);
+  margin: 0 0 1rem 1.25rem;
+}
+
+dialog li {
+  margin-bottom: 0.35rem;
+}
+
+dialog strong {
+  color: var(--text-primary);
+}
+
+.dialog-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: -0.75rem -0.75rem 0 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dialog-close:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+/* How to run locally */
+.run-block {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.run-block summary {
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+}
+
+.run-block summary span {
+  color: var(--text-secondary);
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+.run-body {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.run-body ul {
+  color: var(--text-secondary);
+  margin: 0 0 1rem 1.25rem;
+}
+
+pre {
+  background-color: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+code {
+  font-family: Consolas, 'Courier New', monospace;
+  color: var(--text-primary);
+}
+
+p a {
+  color: var(--accent);
+}
+
 footer {
   text-align: center;
   padding: 2rem;
   border-top: 1px solid var(--border);
   color: var(--text-secondary);
   font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  header { padding: 3rem 1rem; }
+  h1 { font-size: 2.2rem; }
+  main { padding: 2rem 1rem; }
+  dialog { padding: 1.5rem; }
 }
 </style>
 </head>
@@ -172,45 +325,328 @@ footer {
     <p>Whether I am deploying customized local models on self-assembled hardware, architecting full-stack web applications, or integrating foundational LLMs across distinct platforms, I operate with an intense demand for truth, accuracy, and absolute integrity. Forged in high-pressure operational environments where patience under duress is critical, I am driven by a deep curiosity to understand the mechanical truth of a system, leveraging generative learning to build tools that challenge ideas, decode patterns, and execute with precision.</p>
   </section>
 
-  <section id="projects">
-    <h2>Technical Projects</h2>
+  <section id="published">
+    <h2>Published Applications</h2>
     <div class="projects-grid">
 
       <div class="card">
         <h3>Isabella's Closet</h3>
         <span class="card-tech">Firebase | API Integration | Multi-LLM</span>
-        <p>Originally engineered as a highly personalized gift, this full-stack application integrates multiple large language models and complex APIs. Utilizing Firebase data and the latest Gemini models, it executes advanced pattern recognition to deliver highly tailored user styling recommendations.</p>
-        <a href="https://isabellas-closet-200498697390.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
-      </div>
-      
-      <div class="card">
-        <h3>SOC Analysis Tool</h3>
-        <span class="card-tech">Python | Cybersecurity | System Architecture</span>
-        <p>A functional Security Operations Center analysis tool engineered to monitor, detect, and analyze security vulnerabilities using active risk management principles.</p>
-        <a href="https://github.com/ddracoosee-hue/SOC-Analyst-Tool" target="_blank" class="btn">View Repository</a>
+        <p>A personal AI stylist that learns your taste and delivers tailored outfit recommendations.</p>
+        <div class="card-actions">
+          <a href="https://isabellas-closet-200498697390.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
+          <button type="button" class="btn" data-dialog="dlg-closet">Full description</button>
+        </div>
       </div>
 
       <div class="card">
         <h3>Wholesale Market Analysis</h3>
         <span class="card-tech">Gemini LLM | Full-Stack | API Integration</span>
-        <p>A full-stack application designed to analyze wholesale market trends and data, utilizing LLM capabilities to synthesize actionable insights for users.</p>
-        <a href="https://semantic-mutation-engine-988718491455.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
+        <p>Turns raw wholesale market data into clear, actionable insight with LLM-powered analysis.</p>
+        <div class="card-actions">
+          <a href="https://semantic-mutation-engine-988718491455.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
+          <button type="button" class="btn" data-dialog="dlg-wholesale">Full description</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Local Projects</h2>
+    <p class="section-intro">These applications run entirely on your own machine. Projects marked <strong>*</strong> have setup steps under <a href="#run-locally">How to Run Locally</a>.</p>
+    <div class="projects-grid">
+
+      <div class="card">
+        <h3>Orion<span class="asterisk">*</span></h3>
+        <span class="card-tech">TypeScript | Model Context Protocol | DeepSeek + Gemini</span>
+        <a href="#run-orion" class="local-note">* Runs on Local 3000</a>
+        <p>A personal AI command center that pairs frontier-grade reasoning with full local control.</p>
+        <div class="card-actions">
+          <button type="button" class="btn" data-dialog="dlg-orion">Full description</button>
+          <span class="btn btn-disabled">Code available on request</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Textclone<span class="asterisk">*</span></h3>
+        <span class="card-tech">Python | FastAPI | Next.js | Ollama</span>
+        <a href="#run-textclone" class="local-note">* Runs on Local 3000</a>
+        <p>A privacy-first AI writing engine that learns your voice and writes like you, fully offline.</p>
+        <div class="card-actions">
+          <button type="button" class="btn" data-dialog="dlg-textclone">Full description</button>
+          <span class="btn btn-disabled">Code available on request</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>MicroCoin<span class="asterisk">*</span></h3>
+        <span class="card-tech">Python | SQLite | Fault-Tolerant Pipelines</span>
+        <a href="#run-microcoin" class="local-note">* Runs on Local 3000</a>
+        <p>A crash-safe, read-only research engine built to turn crypto chatter into auditable evidence.</p>
+        <div class="card-actions">
+          <button type="button" class="btn" data-dialog="dlg-microcoin">Full description</button>
+          <span class="btn btn-disabled">Code available on request</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Charizard<span class="asterisk">*</span></h3>
+        <span class="card-tech">Python | Playwright | Browser Automation</span>
+        <a href="#run-charizard" class="local-note">* Runs locally (terminal)</a>
+        <p>Drop-day checkout, automated with precision and held strictly within the limits you set.</p>
+        <div class="card-actions">
+          <button type="button" class="btn" data-dialog="dlg-charizard">Full description</button>
+          <span class="btn btn-disabled">Code available on request</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>SOC Analysis Tool</h3>
+        <span class="card-tech">Python | Cybersecurity | System Architecture</span>
+        <p>Security monitoring and vulnerability analysis grounded in active risk management.</p>
+        <div class="card-actions">
+          <a href="https://github.com/ddracoosee-hue/SOC-Analyst-Tool" target="_blank" class="btn">View Repository</a>
+          <button type="button" class="btn" data-dialog="dlg-soc">Full description</button>
+        </div>
       </div>
 
       <div class="card">
         <h3>Localized Agentic Assistant</h3>
         <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
-        <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
-        <a href="#" class="btn btn-disabled">Work in progress..</a>
+        <p>An offline AI assistant running on self-assembled hardware.</p>
+        <div class="card-actions">
+          <button type="button" class="btn" data-dialog="dlg-assistant">Full description</button>
+          <span class="btn btn-disabled">Work in progress..</span>
+        </div>
       </div>
 
     </div>
   </section>
+
+  <section id="run-locally">
+    <h2>How to Run Locally</h2>
+    <p>Source code for these projects is private and available on request. <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request">Email me for access</a> and I'll share the repository. Once you have access, follow the steps below. Commands are for Windows PowerShell unless noted.</p>
+
+    <details class="run-block" id="run-orion">
+      <summary>Orion <span>— http://localhost:3000</span></summary>
+      <div class="run-body">
+        <ul>
+          <li>Node.js 22.13 or newer</li>
+          <li>A Gemini API key, or Ollama for fully local mode</li>
+          <li>A GPU is recommended for local inference</li>
+        </ul>
+<pre><code>git clone https://github.com/ddracoosee-hue/Orion.git orion
+cd orion
+npm ci
+Copy-Item .env.example .env
+# Edit .env: add GEMINI_API_KEY, or set ORION_PROVIDER=ollama
+# and build the local model with: npm run model:build
+npm run build
+npm start
+
+# In a second terminal:
+cd web
+npm run dev</code></pre>
+        <p>Open <strong>http://localhost:3000</strong>. Run <code>npm run doctor</code> to check the system's health.</p>
+      </div>
+    </details>
+
+    <details class="run-block" id="run-textclone">
+      <summary>Textclone <span>— http://localhost:3000</span></summary>
+      <div class="run-body">
+        <ul>
+          <li>Windows 11, Python 3.12, Node.js 20 or newer, Git</li>
+          <li>Ollama with the <code>qwen3:14b</code> model</li>
+          <li>An NVIDIA GPU is recommended</li>
+        </ul>
+<pre><code>git clone https://github.com/ddracoosee-hue/textclone.2.git textclone
+cd textclone
+ollama pull qwen3:14b
+powershell -ExecutionPolicy Bypass -File scripts\setup.ps1
+powershell -ExecutionPolicy Bypass -File scripts\dev.ps1</code></pre>
+        <p>Open <strong>http://localhost:3000</strong>. The local API runs on port 8000.</p>
+      </div>
+    </details>
+
+    <details class="run-block" id="run-microcoin">
+      <summary>MicroCoin <span>— Local 3000</span></summary>
+      <div class="run-body">
+        <ul>
+          <li>Python 3.12 or newer</li>
+          <li>No API keys, network access or database server needed</li>
+        </ul>
+<pre><code>git clone https://github.com/ddracoosee-hue/Microcoin.git microcoin
+cd microcoin
+py -3.12 -m venv .venv
+.venv\Scripts\python -m pip install -e ".[dev]"
+.venv\Scripts\python -m memescout run
+.venv\Scripts\python -m memescout health</code></pre>
+        <p>The run completes against the built-in offline collector and prints its execution record.</p>
+      </div>
+    </details>
+
+    <details class="run-block" id="run-charizard">
+      <summary>Charizard <span>— terminal app, Windows or macOS</span></summary>
+      <div class="run-body">
+        <ul>
+          <li>Python 3.12 or newer</li>
+          <li>Setup installs the Chromium, Firefox and WebKit browser engines</li>
+        </ul>
+<pre><code># From the repository folder (macOS: ./bin/setup.sh and ./bin/charizard.sh)
+.\bin\setup.ps1
+.\bin\charizard.cmd doctor
+
+# Start the bundled mock store to try it safely
+.\bin\charizard.cmd mock-shop --port 8787
+
+# Run the test suite
+.venv\Scripts\python -m pytest</code></pre>
+        <p>Every task starts in dry-run mode. Open the live console with <code>charizard ui</code> in a second terminal.</p>
+      </div>
+    </details>
+  </section>
 </main>
 
+<!-- Project detail pop-ups -->
+<dialog id="dlg-closet" closedby="any" aria-labelledby="dlg-closet-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-closet-title">Isabella's Closet</h3>
+  <span class="card-tech">Firebase | API Integration | Multi-LLM</span>
+  <p>Originally engineered as a highly personalized gift, this full-stack application integrates multiple large language models and complex APIs. Utilizing Firebase data and the latest Gemini models, it executes advanced pattern recognition to deliver highly tailored user styling recommendations.</p>
+</dialog>
+
+<dialog id="dlg-wholesale" closedby="any" aria-labelledby="dlg-wholesale-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-wholesale-title">Wholesale Market Analysis</h3>
+  <span class="card-tech">Gemini LLM | Full-Stack | API Integration</span>
+  <p>A full-stack application designed to analyze wholesale market trends and data, utilizing LLM capabilities to synthesize actionable insights for users.</p>
+</dialog>
+
+<dialog id="dlg-orion" closedby="any" aria-labelledby="dlg-orion-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-orion-title">Orion</h3>
+  <span class="card-tech">TypeScript | Model Context Protocol | DeepSeek + Gemini</span>
+  <p>Orion is a personal AI command center that pairs frontier-grade reasoning with full local control. Its inverted architecture limits language models to deliberation alone. They propose intentions, and Orion's own machine decides, executes and records every action. Control always flows outward, and no inbound port ever opens.</p>
+  <h4>How it works</h4>
+  <p>A composable "trunk" coordinates ten isolated, least-privilege subsystems. Every request passes through a hardened pipeline:</p>
+  <ul>
+    <li>a tiered model gateway, with a custom-built local DeepSeek engine and Gemini handling sub-agents and context compaction</li>
+    <li>tool integrity hashes re-verified before every call</li>
+    <li>human approval for sensitive actions, denied automatically if unanswered</li>
+    <li>default-deny authentication</li>
+    <li>a tamper-evident, append-only audit trail</li>
+  </ul>
+  <h4>What it offers</h4>
+  <p>A 66-tool arsenal across two sandboxed Model Context Protocol servers:</p>
+  <ul>
+    <li>Durable, resumable sessions and a project system with layered memory and stage gates</li>
+    <li>A citation-grounded research pipeline and Obsidian knowledge-vault integration</li>
+    <li>An expandable skill library and an evolving user model that personalizes responses</li>
+    <li>Music control (Spotify, YouTube) and location intelligence from multiple providers</li>
+    <li>Hands-free conversation in Flow Mode, spoken in a custom-designed voice</li>
+    <li>Secure remote access through an outbound-only relay</li>
+    <li>The Celestial interface: a live node-graph canvas and neural-orb display showing each agent action as it happens</li>
+  </ul>
+  <h4>Why it stands apart</h4>
+  <p>Architectural boundaries are enforced at build time. Nightly backups are integrity-checked, and a multi-tier diagnostic "doctor" audits the system. Orion is capable and also demonstrably trustworthy: an autonomous assistant built with enterprise-grade rigor for one private operator.</p>
+</dialog>
+
+<dialog id="dlg-textclone" closedby="any" aria-labelledby="dlg-textclone-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-textclone-title">Textclone</h3>
+  <span class="card-tech">Python | FastAPI | Next.js | Ollama</span>
+  <p>Textclone is a privacy-first, fully local AI writing engine. It learns your own writing voice and reproduces it closely. It ingests nearly any source: Discord, WhatsApp and iMessage exports, email, Word, OCR-processed PDFs, spreadsheets, slides, social media archives and web pages. A role classifier keeps only text you actually wrote.</p>
+  <p>From this corpus it builds a stylometric voice profile of about 90 linguistic features per sample. It detects register automatically (casual chat, academic essay, professional email) and records your signature vocabulary, the words you never use, and a style card for each register.</p>
+  <p>Its generation engine can rewrite text, write from a brief or draft replies. Each draft then passes a verification loop that checks factual fidelity, semantic preservation (BERTScore, EMD), length, syntax, punctuation, casing, vocabulary, pragmatics, perplexity-calibrated fluency, stylistic identity and AI-likeness. Every check is measured against targets taken from your own writing. The engine keeps repairing the text until it passes, never falls below its best version so far, and explains any shortfall.</p>
+  <p>An Analyze workspace scores any text for AI-likeness with a per-sentence heatmap. It combines local detectors, Binoculars scoring and linguistic tells, all calibrated to your personal baseline.</p>
+  <p>Textclone keeps learning: feedback and inline edits become new training data, an adversarial style classifier sharpens the voice match, and optional QLoRA fine-tuning trains a local model on your writing.</p>
+  <p>Everything runs on your machine, with no API keys, cloud services or subscriptions.</p>
+</dialog>
+
+<dialog id="dlg-microcoin" closedby="any" aria-labelledby="dlg-microcoin-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-microcoin-title">MicroCoin</h3>
+  <span class="card-tech">Python | SQLite | Fault-Tolerant Pipelines</span>
+  <p>MicroCoin is a locally sovereign, read-only research platform designed to turn the chaotic, adversarial chatter of crypto communities into auditable, evidence-grounded intelligence. Its current release is the execution foundation that every research run is built on.</p>
+  <ul>
+    <li><strong>Orchestration.</strong> A bounded state machine drives each research run from start to completion, with every transition recorded.</li>
+    <li><strong>Resilience.</strong> Lease-fenced local storage, crash-safe checkpointing and bounded budgets keep every run safe to interrupt, recover and resume.</li>
+    <li><strong>Human approvals.</strong> Sensitive steps pause for an explicit decision: allow once, allow for the session, or deny.</li>
+    <li><strong>Operations.</strong> Health, recovery, resume and cancel commands give full control over every run.</li>
+    <li><strong>Offline by design.</strong> The pipeline runs end to end against a built-in offline collector, with no credentials, network access or LLM required.</li>
+    <li><strong>Hardening.</strong> There are no wallets, trading or posting functions, by design.</li>
+  </ul>
+</dialog>
+
+<dialog id="dlg-charizard" closedby="any" aria-labelledby="dlg-charizard-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-charizard-title">Charizard</h3>
+  <span class="card-tech">Python | Playwright | Browser Automation</span>
+  <p>Charizard is a cross-platform (Windows and macOS) browser agent that watches retail product pages and completes purchases for you. It stays strictly within spending limits you set in plain conversation, turning a frantic drop-day checkout into precise, accountable automation.</p>
+  <h4>How it works</h4>
+  <p>You perform a checkout once. Charizard records it as a portable playbook that identifies page elements by meaning rather than screen coordinates, so it replays identically on any machine or window size. A tiered decision engine judges every opportunity: buy automatically below your threshold, ask for approval in a middle band, and never buy above your ceiling. Hard daily, weekly, per-order and quantity caps always take priority.</p>
+  <h4>What it offers</h4>
+  <ul>
+    <li>Background monitoring that detects restocks and instantly wakes the browser to buy</li>
+    <li>Per-item price limits, plus guards against markups, price spikes and third-party resellers</li>
+    <li>An append-only spend ledger that reserves funds before each order, so a crash can never undercount spending</li>
+    <li>Phone push notifications with remote approval from any device</li>
+    <li>Pre-run checks, post-purchase audits and a deduplicated error log</li>
+    <li>A reward system that scores runs and learns which page elements are most reliable</li>
+    <li>A real-time terminal console for tasks, activity, limits and approvals</li>
+    <li>Chromium, Firefox and WebKit support, each with a persistent signed-in profile</li>
+  </ul>
+  <h4>Why it stands apart</h4>
+  <p>Every task starts in dry-run mode. Payment details are never seen or stored. CAPTCHAs are detected and handed to you, never evaded. Temporary limit increases expire automatically and can be revoked at any time. An extensive test suite runs the whole pipeline against a bundled mock store.</p>
+</dialog>
+
+<dialog id="dlg-soc" closedby="any" aria-labelledby="dlg-soc-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-soc-title">SOC Analysis Tool</h3>
+  <span class="card-tech">Python | Cybersecurity | System Architecture</span>
+  <p>A functional Security Operations Center analysis tool engineered to monitor, detect, and analyze security vulnerabilities using active risk management principles.</p>
+</dialog>
+
+<dialog id="dlg-assistant" closedby="any" aria-labelledby="dlg-assistant-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-assistant-title">Localized Agentic Assistant</h3>
+  <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
+  <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
+</dialog>
+
 <footer>
-  <p>&copy; 2026 Caleb Crouch. Built with HTML & CSS.</p>
+  <p>&copy; 2026 Caleb Crouch. Built with HTML, CSS & JavaScript.</p>
 </footer>
+
+<script>
+document.querySelectorAll('[data-dialog]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.getElementById(button.dataset.dialog).showModal();
+  });
+});
+
+// Light-dismiss fallback for browsers without <dialog closedby> (Safari)
+if (!('closedBy' in HTMLDialogElement.prototype)) {
+  document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const inside = rect.top <= event.clientY && event.clientY <= rect.bottom &&
+                     rect.left <= event.clientX && event.clientX <= rect.right;
+      if (!inside) dialog.close();
+    });
+  });
+}
+
+// Open the matching run-steps block when following a "* Runs on..." link
+document.querySelectorAll('a[href^="#run-"]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target && target.tagName === 'DETAILS') target.open = true;
+  });
+});
+</script>
 
 </body>
 </html>
