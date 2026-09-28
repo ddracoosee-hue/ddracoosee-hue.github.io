@@ -441,9 +441,9 @@ footer {
 
       <div class="card">
         <h3>Orion<span class="asterisk">*</span></h3>
-        <span class="card-tech">TypeScript | Model Context Protocol | DeepSeek + Gemini</span>
+        <span class="card-tech">TypeScript | Project Management | DeepSeek + Gemini</span>
         <a href="#run-orion" class="local-note">* Runs on Local 3000</a>
-        <p>A personal AI command center that pairs frontier-grade reasoning with full local control.</p>
+        <p>A personal AI command center that takes projects from first idea to an approved build plan.</p>
         <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20Orion&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20Orion%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
         <button type="button" class="card-tab" data-dialog="dlg-orion" aria-label="Full description: Orion">Full description</button>
       </div>
@@ -590,30 +590,24 @@ py -3.12 -m venv .venv
 <dialog id="dlg-orion" closedby="any" aria-labelledby="dlg-orion-title">
   <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
   <h3 id="dlg-orion-title">Orion</h3>
-  <span class="card-tech">TypeScript | Model Context Protocol | DeepSeek + Gemini</span>
-  <p>Orion is a personal AI command center that pairs frontier-grade reasoning with full local control. Its inverted architecture limits language models to deliberation alone. They propose intentions, and Orion's own machine decides, executes and records every action. Control always flows outward, and no inbound port ever opens.</p>
-  <h4>How it works</h4>
-  <p>A composable "trunk" coordinates ten isolated, least-privilege subsystems. Every request passes through a hardened pipeline:</p>
+  <span class="card-tech">TypeScript | Project Management | DeepSeek + Gemini</span>
+  <p>Orion is a personal AI command center built around disciplined project development. It takes an idea from first capture to an approved build plan, pairing frontier-grade reasoning with full local control. The models propose, and Orion's own deterministic machinery decides what counts as progress.</p>
+  <h4>A structured project lifecycle</h4>
+  <p>Every project moves through seven stages: capture, clarify, challenge, scope, decompose, validate and commit. Each transition is guarded by a stage gate, a deterministic check with no model judgment involved, so the AI can never talk its way past one. A project cannot leave the challenge stage, for example, until its risks have mitigations, a kill criterion is defined and at least one alternative has been rejected. The final build plan is committed only after the owner explicitly approves it.</p>
+  <h4>Living project documentation</h4>
   <ul>
-    <li>a tiered model gateway, with a custom-built local DeepSeek engine and Gemini handling sub-agents and context compaction</li>
-    <li>tool integrity hashes re-verified before every call</li>
-    <li>human approval for sensitive actions, denied automatically if unanswered</li>
-    <li>default-deny authentication</li>
-    <li>a tamper-evident, append-only audit trail</li>
+    <li>Every project keeps a brief, scope, decision log, open questions, risks, constraints and build plan, generated from structured records and kept in sync</li>
+    <li>Milestones and tasks carry acceptance criteria, and constraints are enforced continuously</li>
+    <li>A "Realism Critic" runs an adversarial review at every stage transition</li>
+    <li>Sandboxed feasibility probes are offered on request and never run automatically</li>
+    <li>Creating, editing and archiving projects all require human approval</li>
   </ul>
-  <h4>What it offers</h4>
-  <p>A 66-tool arsenal across two sandboxed Model Context Protocol servers:</p>
-  <ul>
-    <li>Durable, resumable sessions and a project system with layered memory and stage gates</li>
-    <li>A citation-grounded research pipeline and Obsidian knowledge-vault integration</li>
-    <li>An expandable skill library and an evolving user model that personalizes responses</li>
-    <li>Music control (Spotify, YouTube) and location intelligence from multiple providers</li>
-    <li>Hands-free conversation in Flow Mode, spoken in a custom-designed voice</li>
-    <li>Secure remote access through an outbound-only relay</li>
-    <li>The Celestial interface: a live node-graph canvas and neural-orb display showing each agent action as it happens</li>
-  </ul>
-  <h4>Why it stands apart</h4>
-  <p>Architectural boundaries are enforced at build time. Nightly backups are integrity-checked, and a multi-tier diagnostic "doctor" audits the system. Orion is capable and also demonstrably trustworthy: an autonomous assistant built with enterprise-grade rigor for one private operator.</p>
+  <h4>Memory and continuity</h4>
+  <p>Layered memory separates the current session, each project's durable context and long-term user preferences, and nothing enters a project's memory without approval. Durable sessions record decisions, dead ends and exactly where work left off, so any session can resume, even after a crash.</p>
+  <h4>The project workspace</h4>
+  <p>In the Celestial interface, every project has its own workspace with tabs for the brief, stage progress with a live gate checklist, memory, decisions, questions, risks, constraints, files and timeline. The project system alone provides 32 tools, and Orion is backed by a suite of more than 1,200 tests.</p>
+  <h4>Built on a trustworthy core</h4>
+  <p>Orion's inverted architecture limits language models to deliberation: they propose intentions, and Orion's own machine decides, executes and records every action. A tiered model gateway pairs a custom-built local DeepSeek engine with Gemini. A 66-tool arsenal runs across two sandboxed Model Context Protocol servers, with integrity-checked tools, default-deny authentication and a tamper-evident audit trail. Hands-free Flow Mode conversation, secure outbound-only remote access and a live node-graph view of every agent action round out the system.</p>
 </dialog>
 
 <dialog id="dlg-textclone" closedby="any" aria-labelledby="dlg-textclone-title">
