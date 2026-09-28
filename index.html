@@ -92,11 +92,13 @@ p {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
+  padding-right: 2rem;
 }
 
 .card {
+  position: relative;
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -104,6 +106,62 @@ p {
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease;
+}
+
+/* Outward-facing "Full description" tab on each card */
+.card-tab {
+  position: absolute;
+  top: 50%;
+  right: -2rem;
+  translate: 0 -50%;
+  width: 2rem;
+  padding: 1rem 0;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-tab:hover,
+.card-tab:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 14px rgba(74, 144, 226, 0.6), 0 0 4px rgba(74, 144, 226, 0.8);
+}
+
+@media (min-width: 720px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 2rem;
+  }
+
+  /* Left-column cards mirror their tab onto the left edge, facing out */
+  .projects-grid .card:nth-child(odd) .card-tab {
+    right: auto;
+    left: -2rem;
+    rotate: 180deg;
+  }
+}
+
+.code-request {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.code-request:hover {
+  text-decoration: underline;
 }
 
 .card:hover {
@@ -123,7 +181,6 @@ p {
 .card p {
   font-size: 0.95rem;
   margin-bottom: 1rem;
-  flex-grow: 1;
 }
 
 .card-tech {
@@ -330,13 +387,13 @@ footer {
     <div class="projects-grid">
 
       <div class="card">
-        <h3>Isabella's Closet</h3>
+        <h3>Ella's Closet</h3>
         <span class="card-tech">Firebase | API Integration | Multi-LLM</span>
         <p>A personal AI stylist that learns your taste and delivers tailored outfit recommendations.</p>
         <div class="card-actions">
           <a href="https://isabellas-closet-200498697390.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
-          <button type="button" class="btn" data-dialog="dlg-closet">Full description</button>
         </div>
+        <button type="button" class="card-tab" data-dialog="dlg-closet" aria-label="Full description: Ella's Closet">Full description</button>
       </div>
 
       <div class="card">
@@ -345,8 +402,8 @@ footer {
         <p>Turns raw wholesale market data into clear, actionable insight with LLM-powered analysis.</p>
         <div class="card-actions">
           <a href="https://semantic-mutation-engine-988718491455.us-east1.run.app/" target="_blank" class="btn">Launch Application</a>
-          <button type="button" class="btn" data-dialog="dlg-wholesale">Full description</button>
         </div>
+        <button type="button" class="card-tab" data-dialog="dlg-wholesale" aria-label="Full description: Wholesale Market Analysis">Full description</button>
       </div>
 
     </div>
@@ -362,10 +419,8 @@ footer {
         <span class="card-tech">TypeScript | Model Context Protocol | DeepSeek + Gemini</span>
         <a href="#run-orion" class="local-note">* Runs on Local 3000</a>
         <p>A personal AI command center that pairs frontier-grade reasoning with full local control.</p>
-        <div class="card-actions">
-          <button type="button" class="btn" data-dialog="dlg-orion">Full description</button>
-          <span class="btn btn-disabled">Code available on request</span>
-        </div>
+        <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20Orion&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20Orion%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
+        <button type="button" class="card-tab" data-dialog="dlg-orion" aria-label="Full description: Orion">Full description</button>
       </div>
 
       <div class="card">
@@ -373,10 +428,8 @@ footer {
         <span class="card-tech">Python | FastAPI | Next.js | Ollama</span>
         <a href="#run-textclone" class="local-note">* Runs on Local 3000</a>
         <p>A privacy-first AI writing engine that learns your voice and writes like you, fully offline.</p>
-        <div class="card-actions">
-          <button type="button" class="btn" data-dialog="dlg-textclone">Full description</button>
-          <span class="btn btn-disabled">Code available on request</span>
-        </div>
+        <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20Textclone&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20Textclone%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
+        <button type="button" class="card-tab" data-dialog="dlg-textclone" aria-label="Full description: Textclone">Full description</button>
       </div>
 
       <div class="card">
@@ -384,10 +437,8 @@ footer {
         <span class="card-tech">Python | SQLite | Fault-Tolerant Pipelines</span>
         <a href="#run-microcoin" class="local-note">* Runs on Local 3000</a>
         <p>A crash-safe, read-only research engine built to turn crypto chatter into auditable evidence.</p>
-        <div class="card-actions">
-          <button type="button" class="btn" data-dialog="dlg-microcoin">Full description</button>
-          <span class="btn btn-disabled">Code available on request</span>
-        </div>
+        <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20MicroCoin&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20MicroCoin%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
+        <button type="button" class="card-tab" data-dialog="dlg-microcoin" aria-label="Full description: MicroCoin">Full description</button>
       </div>
 
       <div class="card">
@@ -395,10 +446,8 @@ footer {
         <span class="card-tech">Python | Playwright | Browser Automation</span>
         <a href="#run-charizard" class="local-note">* Runs locally (terminal)</a>
         <p>Drop-day checkout, automated with precision and held strictly within the limits you set.</p>
-        <div class="card-actions">
-          <button type="button" class="btn" data-dialog="dlg-charizard">Full description</button>
-          <span class="btn btn-disabled">Code available on request</span>
-        </div>
+        <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20Charizard&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20Charizard%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
+        <button type="button" class="card-tab" data-dialog="dlg-charizard" aria-label="Full description: Charizard">Full description</button>
       </div>
 
       <div class="card">
@@ -407,8 +456,8 @@ footer {
         <p>Security monitoring and vulnerability analysis grounded in active risk management.</p>
         <div class="card-actions">
           <a href="https://github.com/ddracoosee-hue/SOC-Analyst-Tool" target="_blank" class="btn">View Repository</a>
-          <button type="button" class="btn" data-dialog="dlg-soc">Full description</button>
         </div>
+        <button type="button" class="card-tab" data-dialog="dlg-soc" aria-label="Full description: SOC Analysis Tool">Full description</button>
       </div>
 
       <div class="card">
@@ -416,9 +465,9 @@ footer {
         <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
         <p>An offline AI assistant running on self-assembled hardware.</p>
         <div class="card-actions">
-          <button type="button" class="btn" data-dialog="dlg-assistant">Full description</button>
           <span class="btn btn-disabled">Work in progress..</span>
         </div>
+        <button type="button" class="card-tab" data-dialog="dlg-assistant" aria-label="Full description: Localized Agentic Assistant">Full description</button>
       </div>
 
     </div>
@@ -511,7 +560,7 @@ py -3.12 -m venv .venv
 <!-- Project detail pop-ups -->
 <dialog id="dlg-closet" closedby="any" aria-labelledby="dlg-closet-title">
   <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
-  <h3 id="dlg-closet-title">Isabella's Closet</h3>
+  <h3 id="dlg-closet-title">Ella's Closet</h3>
   <span class="card-tech">Firebase | API Integration | Multi-LLM</span>
   <p>Originally engineered as a highly personalized gift, this full-stack application integrates multiple large language models and complex APIs. Utilizing Firebase data and the latest Gemini models, it executes advanced pattern recognition to deliver highly tailored user styling recommendations.</p>
 </dialog>
