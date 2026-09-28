@@ -459,7 +459,7 @@ footer {
 
       <div class="card">
         <h3>MicroCoin<span class="asterisk">*</span></h3>
-        <span class="card-tech">Python | SQLite | Fault-Tolerant Pipelines</span>
+        <span class="card-tech">Python | LLM Integration | Live Data Collection</span>
         <a href="#run-microcoin" class="local-note">* Runs on Local 3000</a>
         <p>A crash-safe, read-only research engine built to turn crypto chatter into auditable evidence.</p>
         <a href="mailto:ddracoosee@gmail.com?subject=Code%20access%20request%3A%20MicroCoin&amp;body=Hi%20Caleb%2C%0A%0AI%27d%20like%20access%20to%20the%20MicroCoin%20source%20code.%20My%20GitHub%20username%20is%3A%20" class="code-request">Code available on request &rarr;</a>
@@ -483,16 +483,6 @@ footer {
           <a href="https://github.com/ddracoosee-hue/SOC-Analyst-Tool" target="_blank" class="btn">View Repository</a>
         </div>
         <button type="button" class="card-tab" data-dialog="dlg-soc" aria-label="Full description: SOC Analysis Tool">Full description</button>
-      </div>
-
-      <div class="card">
-        <h3>Localized Agentic Assistant</h3>
-        <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
-        <p>An offline AI assistant running on self-assembled hardware.</p>
-        <div class="card-actions">
-          <span class="btn btn-disabled">Work in progress..</span>
-        </div>
-        <button type="button" class="card-tab" data-dialog="dlg-assistant" aria-label="Full description: Localized Agentic Assistant">Full description</button>
       </div>
 
     </div>
@@ -548,7 +538,7 @@ powershell -ExecutionPolicy Bypass -File scripts\dev.ps1</code></pre>
       <div class="run-body">
         <ul>
           <li>Python 3.12 or newer</li>
-          <li>No API keys, network access or database server needed</li>
+          <li>The quick start below uses the built-in offline collector, so no API keys or network access are needed to try it</li>
         </ul>
 <pre><code>git clone https://github.com/ddracoosee-hue/Microcoin.git microcoin
 cd microcoin
@@ -641,14 +631,15 @@ py -3.12 -m venv .venv
 <dialog id="dlg-microcoin" closedby="any" aria-labelledby="dlg-microcoin-title">
   <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
   <h3 id="dlg-microcoin-title">MicroCoin</h3>
-  <span class="card-tech">Python | SQLite | Fault-Tolerant Pipelines</span>
-  <p>MicroCoin is a locally sovereign, read-only research platform designed to turn the chaotic, adversarial chatter of crypto communities into auditable, evidence-grounded intelligence. Its current release is the execution foundation that every research run is built on.</p>
+  <span class="card-tech">Python | LLM Integration | Live Data Collection</span>
+  <p>MicroCoin is a locally sovereign, read-only research platform designed to turn the chaotic, adversarial chatter of crypto communities into auditable, evidence-grounded intelligence.</p>
   <ul>
+    <li><strong>Live data collection.</strong> Bots with direct internet access gather live conversations and data from targeted communities such as Telegram and Discord, among other sources.</li>
+    <li><strong>LLM integration.</strong> Full language-model integration, running either locally or through a connected API.</li>
     <li><strong>Orchestration.</strong> A bounded state machine drives each research run from start to completion, with every transition recorded.</li>
     <li><strong>Resilience.</strong> Lease-fenced local storage, crash-safe checkpointing and bounded budgets keep every run safe to interrupt, recover and resume.</li>
     <li><strong>Human approvals.</strong> Sensitive steps pause for an explicit decision: allow once, allow for the session, or deny.</li>
     <li><strong>Operations.</strong> Health, recovery, resume and cancel commands give full control over every run.</li>
-    <li><strong>Offline by design.</strong> The pipeline runs end to end against a built-in offline collector, with no credentials, network access or LLM required.</li>
     <li><strong>Hardening.</strong> There are no wallets, trading or posting functions, by design.</li>
   </ul>
 </dialog>
@@ -680,13 +671,6 @@ py -3.12 -m venv .venv
   <h3 id="dlg-soc-title">SOC Analysis Tool</h3>
   <span class="card-tech">Python | Cybersecurity | System Architecture</span>
   <p>A functional Security Operations Center analysis tool engineered to monitor, detect, and analyze security vulnerabilities using active risk management principles.</p>
-</dialog>
-
-<dialog id="dlg-assistant" closedby="any" aria-labelledby="dlg-assistant-title">
-  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
-  <h3 id="dlg-assistant-title">Localized Agentic Assistant</h3>
-  <span class="card-tech">Mistral 3.2 | Ollama | Custom Hardware</span>
-  <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
 </dialog>
 
 <dialog id="dlg-email" closedby="any" aria-labelledby="dlg-email-title">
