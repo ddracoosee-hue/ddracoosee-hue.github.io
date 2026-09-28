@@ -298,6 +298,28 @@ dialog strong {
   border-color: var(--accent);
 }
 
+/* Email chooser */
+#dlg-email {
+  width: min(440px, calc(100% - 2rem));
+}
+
+.email-options {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.email-options .btn {
+  width: 100%;
+}
+
+.copy-status {
+  min-height: 1.5rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 /* How to run locally */
 .run-block {
   background-color: var(--bg-card);
@@ -664,6 +686,19 @@ py -3.12 -m venv .venv
   <p>A custom-built offline AI assistant running on self-assembled hardware. Configured to act as a cognitive sounding board and organize daily workflows.</p>
 </dialog>
 
+<dialog id="dlg-email" closedby="any" aria-labelledby="dlg-email-title">
+  <form method="dialog"><button class="dialog-close" aria-label="Close">&times;</button></form>
+  <h3 id="dlg-email-title">Email Caleb</h3>
+  <p>Choose where to write your message. My address, <strong>ddracoosee@gmail.com</strong>, will be filled in for you.</p>
+  <div class="email-options">
+    <a class="btn" id="email-gmail" target="_blank" rel="noopener">Open in Gmail</a>
+    <a class="btn" id="email-outlook" target="_blank" rel="noopener">Open in Outlook</a>
+    <a class="btn" id="email-default">Use my default email app</a>
+    <button type="button" class="btn" id="email-copy">Copy email address</button>
+  </div>
+  <p class="copy-status" id="email-copy-status" role="status"></p>
+</dialog>
+
 <footer>
   <p>&copy; 2026 Caleb Crouch. Built with HTML, CSS & JavaScript.</p>
 </footer>
@@ -687,6 +722,43 @@ if (!('closedBy' in HTMLDialogElement.prototype)) {
     });
   });
 }
+
+// Email links open a chooser so visitors can use webmail, not only a desktop mail app.
+// Without JavaScript the plain mailto: link still works.
+const emailDialog = document.getElementById('dlg-email');
+document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const mail = new URL(link.href);
+    const to = decodeURIComponent(mail.pathname);
+    const subject = mail.searchParams.get('subject') || '';
+    const body = mail.searchParams.get('body') || '';
+    const q = (params) => Object.entries(params)
+      .map(([key, value]) => key + '=' + encodeURIComponent(value)).join('&');
+    document.getElementById('email-gmail').href =
+      'https://mail.google.com/mail/?' + q({ view: 'cm', fs: '1', to, su: subject, body });
+    document.getElementById('email-outlook').href =
+      'https://outlook.live.com/mail/0/deeplink/compose?' + q({ to, subject, body });
+    document.getElementById('email-default').href = link.href;
+    document.getElementById('email-copy').dataset.address = to;
+    document.getElementById('email-copy-status').textContent = '';
+    emailDialog.showModal();
+  });
+});
+
+emailDialog.querySelectorAll('.email-options a').forEach((option) => {
+  option.addEventListener('click', () => emailDialog.close());
+});
+
+document.getElementById('email-copy').addEventListener('click', async (event) => {
+  const status = document.getElementById('email-copy-status');
+  try {
+    await navigator.clipboard.writeText(event.currentTarget.dataset.address);
+    status.textContent = 'Copied to clipboard.';
+  } catch {
+    status.textContent = 'Copy failed. The address is ddracoosee@gmail.com';
+  }
+});
 
 // Open the matching run-steps block when following a "* Runs on..." link
 document.querySelectorAll('a[href^="#run-"]').forEach((link) => {
